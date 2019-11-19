@@ -11,6 +11,6 @@ First react native app
       - Click 'Tap To Play'.
       - Lastly, you will need to scroll down on the emulator by clicking and dragging your mouse. Click 'Open project in Expo'.
 
-##Instructions
+## Instructions
  - Flip all the values you see to display '1' to win.
  - If you get stuck you can reset the board and try again by tapping the buttons below.

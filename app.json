@@ -30,6 +30,6 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "description": ""
+    "description": "Game Instructions: Flip all the values you see to display '1' to win. If you get stuck you can reset the board and try again by tapping the buttons below."
   }
 }

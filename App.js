@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Text,SafeAreaView, View, Button, StyleSheet} from 'react-native'
+import Leveltwo from './Leveltwo'
 
 class App extends Component{
 
@@ -18,18 +19,7 @@ class App extends Component{
     }
   }
 
-  ResetGame(){
-    this.setState({block: [
-                      false, false, true, false, false, 
-                      false, true, false, true, false, 
-                      true, false, false, false, true,
-                      false, true, false, true, false, 
-                      false, false, true, false, false
-                         ],
-                    winner: false})
-  }
-
-  levelTwo(){
+  Leveltwo(){
     this.setState({block: [
                       true, false, false, false, true, 
                       false, true, true, true, false, 
@@ -38,6 +28,19 @@ class App extends Component{
                       true, false, false, false, true
                          ],
                     winner: false})
+
+  }
+
+  ResetGame(){
+  
+      this.setState({block: [
+                        false, false, true, false, false, 
+                        false, true, false, true, false, 
+                        true, false, false, false, true,
+                        false, true, false, true, false, 
+                        false, false, true, false, false
+                           ],
+                      winner: false})
   }
 
   handleButtonSwap(index){
@@ -182,83 +185,52 @@ class App extends Component{
   }
 
   render(){
-    let display = this.state.winner?<Text>You won!</Text>:<Text>Play</Text>
-    const styles = StyleSheet.create({
-    box:{
-          backgroundColor: 'orange',
-          fontSize: 40
-        }
-    })
-    
+    let display = this.state.winner?<Text>You won!</Text> :<Text>Play</Text>
+    let color = this.state.block.map(x => {return x ? '#336699' : '#ff4500' })
+    let placeholderText = '00'
+    let levelTwoButton = this.state.winner? <Button title ='Try level 2 here' onPress = { () => this.Leveltwo()} ></Button>: null
+
     return (
       <SafeAreaView>
-    
-              <Text style = {{width: 340, textAlign: 'center', fontSize: 60 }}>{display}</Text>
-                <Text style = {{marginLeft: 100, marginTop: 60}}>  
-                    <Text style={styles.box} onPress = {() => this.handleButtonSwap(0)}>{Number(this.state.block[0])}{"  "}</Text>
-                    <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(1)}>{Number(this.state.block[1])}{"  "}</Text>
-                    <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(2)}>{Number(this.state.block[2])}{"  "}</Text>
-                    <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(3)}>{Number(this.state.block[3])}{"  "}</Text>
-                    <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(4)}>{Number(this.state.block[4])}{"  "}</Text>
-                </Text> 
-                <Text style = {{marginLeft: 100, marginTop: 20}}>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(5)}>{Number(this.state.block[5])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(6)}>{Number(this.state.block[6])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(7)}>{Number(this.state.block[7])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(8)}>{Number(this.state.block[8])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(9)}>{Number(this.state.block[9])}{"  "}</Text>
-                </Text>
-                <Text style = {{marginLeft: 100, marginTop: 20}}>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(10)}>{Number(this.state.block[10])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(11)}>{Number(this.state.block[11])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(12)}>{Number(this.state.block[12])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(13)}>{Number(this.state.block[13])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(14)}>{Number(this.state.block[14])}{"  "}</Text>
-                </Text>
-                <Text style = {{marginLeft: 100, marginTop: 20}}>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(15)}>{Number(this.state.block[15])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(16)}>{Number(this.state.block[16])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(17)}>{Number(this.state.block[17])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(18)}>{Number(this.state.block[18])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(19)}>{Number(this.state.block[19])}{"  "}</Text>
-                </Text>
-                <Text style = {{marginLeft: 100, marginTop: 20}}>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(20)}>{Number(this.state.block[20])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(21)}>{Number(this.state.block[21])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(22)}>{Number(this.state.block[22])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(23)}>{Number(this.state.block[23])}{"  "}</Text>
-                  <Text style={{fontSize: 40}} onPress = {() => this.handleButtonSwap(24)}>{Number(this.state.block[24])}{"  "}</Text>
-                </Text>{/*
-                  <Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(1) }></Button>
-                  <Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(2) }></Button>
-                  <Text>{Number(this.state.block[3])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(3) }></Button>
-                  <Text>{Number(this.state.block[4])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(4) }></Button>
-                  <Text>{Number(this.state.block[5])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(5) }></Button>
-                  <Text>{Number(this.state.block[6])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(6) }></Button>               
-                  <Text>{Number(this.state.block[7])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(7) }></Button>              
-                  <Text>{Number(this.state.block[8])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(8) }></Button>                 
-                  <Text>{Number(this.state.block[9])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(9) }></Button>
-                  <Text>{Number(this.state.block[10])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(10) }></Button>
-                  <Text>{Number(this.state.block[11])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(11) }></Button>
-                  <Text>{Number(this.state.block[12])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(12) }></Button>
-                  <Text>{Number(this.state.block[13])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(13) }></Button>
-                  <Text>{Number(this.state.block[14])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(14) }></Button>          
-                  <Text>{Number(this.state.block[15])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(15) }></Button>
-                  <Text>{Number(this.state.block[16])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(16) }></Button>
-                  <Text>{Number(this.state.block[17])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(17) }></Button>
-                  <Text>{Number(this.state.block[18])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(18) }></Button>
-                  <Text>{Number(this.state.block[19])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(19) }></Button>             
-                  <Text>{Number(this.state.block[20])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(20) }></Button>
-                  <Text>{Number(this.state.block[21])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(21) }></Button>
-                  <Text>{Number(this.state.block[22])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(22) }></Button>
-                  <Text>{Number(this.state.block[23])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(23) }></Button>
-                  <Text>{Number(this.state.block[24])}</Text><Button title = 'b'className = 'Button' onPress = { () => this.handleButtonSwap(24) }></Button> */}
-              <Button style = {{color: 'black', fontSize: 40}} title ='Stuck? Reset here' onPress = { () => this.ResetGame()}>
-              </Button>
-
-              <Button style = {{color: 'black', fontSize: 40}} title ='Level 2' onPress = { () => this.levelTwo()}>
-              </Button>
-    </SafeAreaView>
+        <Text style = {{textAlign: 'center', fontSize: 60 }}>{display}</Text>
+          <Text style = {{marginTop: 60, textAlign: 'center'}}>  
+            <Text style={{backgroundColor: `${color[0]}`, color: `${color[0]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(0)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[1]}`, color: `${color[1]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(1)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[2]}`, color: `${color[2]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(2)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[3]}`, color: `${color[3]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(3)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[4]}`, color: `${color[4]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(4)}>{placeholderText}</Text>
+            </Text> 
+            <Text style = {{textAlign: 'center'}}>
+              <Text style={{backgroundColor: `${color[5]}`, color: `${color[5]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(5)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[6]}`, color: `${color[6]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(6)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[7]}`, color: `${color[7]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(7)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[8]}`, color: `${color[8]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(8)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[9]}`, color: `${color[9]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(9)}>{placeholderText}</Text>
+            </Text>
+            <Text style = {{textAlign: 'center'}}>
+              <Text style={{backgroundColor: `${color[10]}`, color: `${color[10]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(10)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[11]}`, color: `${color[11]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(11)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[12]}`, color: `${color[12]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(12)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[13]}`, color: `${color[13]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(13)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[14]}`, color: `${color[14]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(14)}>{placeholderText}</Text>
+            </Text>
+            <Text style = {{textAlign: 'center'}}>
+              <Text style={{backgroundColor: `${color[15]}`, color: `${color[15]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(15)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[16]}`, color: `${color[16]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(16)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[17]}`, color: `${color[17]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(17)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[18]}`, color: `${color[18]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(18)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[19]}`, color: `${color[19]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(19)}>{placeholderText}</Text>
+            </Text>
+            <Text style = {{textAlign: 'center'}}>
+              <Text style={{backgroundColor: `${color[20]}`, color: `${color[20]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(20)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[21]}`, color: `${color[21]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(21)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[22]}`, color: `${color[22]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(22)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[23]}`, color: `${color[23]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(23)}>{placeholderText}</Text>
+              <Text style={{backgroundColor: `${color[24]}`, color: `${color[24]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(24)}>{placeholderText}</Text>
+            </Text>
+          <Button style = {{marginTop: 100}} title ='Stuck? Reset here' onPress = { () => this.ResetGame()}></Button> 
+          {levelTwoButton}
+      </SafeAreaView>
     );
   }
 }

@@ -12,5 +12,5 @@ First react native app
       - Lastly, you will need to scroll down on the emulator by clicking and dragging your mouse. Click 'Open project in Expo'.
 
 ## Game Instructions
- - Flip all the values you see to display '1' to win.
- - If you get stuck you can reset the board and try again by tapping the buttons below.
+ - Flip all boxes to a blue color by tapping on a box.
+ - If you get stuck you can reset the board and try again by tapping the buttons on screen.

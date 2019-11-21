@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Text,SafeAreaView, View, Button, StyleSheet} from 'react-native'
-import Leveltwo from './Leveltwo'
 
 class App extends Component{
 

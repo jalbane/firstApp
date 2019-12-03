@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import {Text,SafeAreaView, View, Button, StyleSheet} from 'react-native'
 
 class App extends Component{
-
-
   constructor(){
     super()
     this.state ={
@@ -27,7 +25,6 @@ class App extends Component{
                       true, false, false, false, true
                          ],
                     winner: false})
-
   }
 
   ResetGame(){
@@ -194,11 +191,11 @@ class App extends Component{
         <Text style = {{textAlign: 'center', fontSize: 60 }}>{display}</Text>
           <Text style = {{marginTop: 60, textAlign: 'center'}}>  
             <Text style={{backgroundColor: `${color[0]}`, color: `${color[0]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(0)}>{placeholderText}</Text>
-              <Text style={{backgroundColor: `${color[1]}`, color: `${color[1]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(1)}>{placeholderText}</Text>
-              <Text style={{backgroundColor: `${color[2]}`, color: `${color[2]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(2)}>{placeholderText}</Text>
-              <Text style={{backgroundColor: `${color[3]}`, color: `${color[3]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(3)}>{placeholderText}</Text>
-              <Text style={{backgroundColor: `${color[4]}`, color: `${color[4]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(4)}>{placeholderText}</Text>
-            </Text> 
+            <Text style={{backgroundColor: `${color[1]}`, color: `${color[1]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(1)}>{placeholderText}</Text>
+            <Text style={{backgroundColor: `${color[2]}`, color: `${color[2]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(2)}>{placeholderText}</Text>
+            <Text style={{backgroundColor: `${color[3]}`, color: `${color[3]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(3)}>{placeholderText}</Text>
+            <Text style={{backgroundColor: `${color[4]}`, color: `${color[4]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(4)}>{placeholderText}</Text>
+          </Text> 
             <Text style = {{textAlign: 'center'}}>
               <Text style={{backgroundColor: `${color[5]}`, color: `${color[5]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(5)}>{placeholderText}</Text>
               <Text style={{backgroundColor: `${color[6]}`, color: `${color[6]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(6)}>{placeholderText}</Text>

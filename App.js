@@ -215,7 +215,7 @@ class App extends Component{
       ? <Button title ='Take me back to Level One!' style = {{marginTop: 100}} onPress = { () => this.setState({block: Levelone, winner: false, level: 1}) }></Button>
       : null
     let returnToTwo = this.state.level > 2
-      ? <Button title ='Take me back to Level Two!' style = {{marginTop: 100}} onPress = { () => this.setState({block: Levelone, winner: false, level: 2}) }></Button>
+      ? <Button title ='Take me back to Level Two!' style = {{marginTop: 100}} onPress = { () => this.setState({block: Leveltwo, winner: false, level: 2}) }></Button>
       : null
 
     return (

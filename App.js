@@ -1,42 +1,63 @@
 import React, {Component} from 'react'
-import {Text,SafeAreaView, View, Button, StyleSheet} from 'react-native'
+import {Text,SafeAreaView, View,Button, StyleSheet} from 'react-native'
+
+
+const Levelone = [
+      false, false, true, false, false, 
+      false, true, false, true, false, 
+      true, false, false, false, true,
+      false, true, false, true, false, 
+      false, false, true, false, false
+];
+
+const Leveltwo = [
+      true, false, false, false, true, 
+      false, true, true, true, false, 
+      false, true, false, true, false,
+      false, true, true, true, false, 
+      true, false, false, false, true
+];
+
+const Levelthree = [
+      false, false, false, true, true,
+      false, true, true, true, false,
+      true, true, false, false, false,
+      false, true, true, true, false,
+      false, false, false, true, true 
+      
+];
 
 class App extends Component{
   constructor(){
     super()
     this.state ={
-      block: [
-          false, false, true, false, false, 
-                  false, true, false, true, false, 
-                  true, false, false, false, true,
-                  false, true, false, true, false, 
-                  false, false, true, false, false
-                  ],
-      winner: false
+      block: Levelone,
+      winner: false,
+      level: 1
     }
   }
 
-  Leveltwo(){
-    this.setState({block: [
-                      true, false, false, false, true, 
-                      false, true, true, true, false, 
-                      false, true, false, true, false,
-                      false, true, true, true, false, 
-                      true, false, false, false, true
-                         ],
-                    winner: false})
-  }
-
-  ResetGame(){
-  
-      this.setState({block: [
-                        false, false, true, false, false, 
-                        false, true, false, true, false, 
-                        true, false, false, false, true,
-                        false, true, false, true, false, 
-                        false, false, true, false, false
-                           ],
-                      winner: false})
+  ResetGame(level){
+    switch (level){
+      case 1:
+        this.setState({block: Levelone,
+                       winner: false,
+                       level: 1
+                     })
+        break;
+      case 2:
+        this.setState({block: Leveltwo,
+                       winner: false,
+                       level: 2
+                     })
+        break;
+      case 3:
+        this.setState({block: Levelthree,
+                       winner: false,
+                       level: 3
+                     })
+        break;
+    }
   }
 
   handleButtonSwap(index){
@@ -175,21 +196,35 @@ class App extends Component{
         copy[neighborLeft] = !this.state.block[neighborLeft]
       }
       
-    let winCondition = copy.every( (index) => index === true  )
-    this.setState({block: copy, winner: winCondition})
+      let winCondition = copy.every( (index) => index === true  )
+      this.setState({block: copy, winner: winCondition})
     }
   }
 
   render(){
-    let display = this.state.winner?<Text>You won!</Text> :<Text>Play</Text>
+    let display = this.state.winner
+      ? <Text>You won!</Text>
+      :<Text>Play</Text>
     let color = this.state.block.map(x => {return x ? '#336699' : '#ff4500' })
     let placeholderText = '00'
-    let levelTwoButton = this.state.winner? <Button title ='Try level 2 here' onPress = { () => this.Leveltwo()} ></Button>: null
+    let levelTwoButton = this.state.winner && this.state.level === 1
+      ? <Button title ='Try level 2 here' onPress = { () => this.setState({block: Leveltwo, winner: false, level: 2})} ></Button>
+      : null
+     let levelThreeButton = this.state.winner && this.state.level === 2
+      ? <Button title ='Try level 3 here' onPress = { () => this.setState({block: Levelthree, winner: false, level: 3})} ></Button>
+      : null 
+    let returnToOne = this.state.level > 1
+      ? <Button title ='Take me back to Level One!' style = {{marginTop: 100}} onPress = { () => this.setState({block: Levelone, winner: false, level: 1}) }></Button>
+      : null
+    let returnToTwo = this.state.level > 2
+      ? <Button title ='Take me back to Level Two!' style = {{marginTop: 100}} onPress = { () => this.setState({block: Levelone, winner: false, level: 2}) }></Button>
+      : null
 
     return (
       <SafeAreaView>
-        <Text style = {{textAlign: 'center', fontSize: 60 }}>{display}</Text>
-          <Text style = {{marginTop: 60, textAlign: 'center'}}>  
+        <Text style = {{textAlign: 'center', fontSize: 60, marginBottom: 30 }}>{display}</Text>
+          <Button buttonStyle = {{marginTop: 60, fontSize: 40}} title ='Stuck? Reset here' onPress = { () => this.ResetGame(this.state.level)}></Button>
+          <Text style = {{marginTop: 30, textAlign: 'center'}}>  
             <Text style={{backgroundColor: `${color[0]}`, color: `${color[0]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(0)}>{placeholderText}</Text>
             <Text style={{backgroundColor: `${color[1]}`, color: `${color[1]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(1)}>{placeholderText}</Text>
             <Text style={{backgroundColor: `${color[2]}`, color: `${color[2]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(2)}>{placeholderText}</Text>
@@ -224,8 +259,10 @@ class App extends Component{
               <Text style={{backgroundColor: `${color[23]}`, color: `${color[23]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(23)}>{placeholderText}</Text>
               <Text style={{backgroundColor: `${color[24]}`, color: `${color[24]}`,fontSize: 50}} onPress = {() => this.handleButtonSwap(24)}>{placeholderText}</Text>
             </Text>
-          <Button style = {{marginTop: 100}} title ='Stuck? Reset here' onPress = { () => this.ResetGame()}></Button> 
-          {levelTwoButton}
+        {returnToOne}
+        {returnToTwo}
+        {levelTwoButton}
+        {levelThreeButton}
       </SafeAreaView>
     );
   }

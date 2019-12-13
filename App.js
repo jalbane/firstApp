@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Text,SafeAreaView, View,Button, StyleSheet} from 'react-native'
 
-
 const Levelone = [
       false, false, true, false, false, 
       false, true, false, true, false, 
@@ -23,8 +22,7 @@ const Levelthree = [
       false, true, true, true, false,
       true, true, false, false, false,
       false, true, true, true, false,
-      false, false, false, true, true 
-      
+      false, false, false, true, true    
 ];
 
 class App extends Component{
